@@ -10,21 +10,20 @@ class MysqlFactory:
     psw: str = '123456'
     db: str = 'weibo'
     charset: str = "utf8mb4"
-    conn: pymysql.connections.Connection
-    cursor: pymysql.connections.Connection
+    conn = pymysql.connect(
+        host=host,
+        port=port,
+        user=user,
+        password=psw,
+        db=db,
+        charset=charset
+    )
+    cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)
 
-    def __init__(self):
-        self.conn = pymysql.connect(
-            host=self.host,
-            port=self.port,
-            user=self.user,
-            password=self.psw,
-            db=self.db,
-            charset=self.charset
-        )
-        self.cursor = self.conn.cursor(cursor=pymysql.cursors.DictCursor)
+    def __init__(self, config: dict):
+        for key in config.keys():
+            self.key = config.get(key)
 
-    def __int__(self, config: json):
         self.conn = pymysql.connect(
             host=self.host,
             port=self.port,
@@ -36,4 +35,4 @@ class MysqlFactory:
         self.cursor = self.conn.cursor(cursor=pymysql.cursors.DictCursor)
 
     def get(self):
-        return self.conn,self.cursor
+        return self.conn, self.cursor

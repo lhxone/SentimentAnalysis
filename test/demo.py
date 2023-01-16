@@ -10,7 +10,7 @@ HOME = os.path.abspath(os.path.dirname(os.getcwd()))
 class MyTestCase(unittest.TestCase):
     def testMySql(self):
         print(HOME)
-        filepath = os.path.join(HOME, 'config/mysql.yaml')
+        filepath = os.path.join(HOME, 'config/config.yaml')
         f = open(filepath, 'r')
         ystr = f.read()
 
