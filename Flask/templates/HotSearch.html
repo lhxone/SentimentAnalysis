@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HotSearch</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="/static/bootstrap/js/bootstrap.js"></script>
+</head>
+<body>
+{#头部#}
+<div class="container">
+    <h2>Dashboard</h2>
+    <p>控制板</p>
+    <ul class="nav nav-tabs">
+        <li><a href="/dashboard">dashboard</a></li>
+        <li class="active"><a href="#">近期热搜数据</a></li>
+        <li><a href="/search">查找</a></li>
+    </ul>
+
+
+</div>
+{#中间部#}
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>title</th>
+            <th>url</th>
+            <th>tag</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in data %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.title }}</td>
+                <td><a href="{{ item.url }}">详情</a></td>
+                <td>{{ item.hot }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+
+{#尾部#}
+<div class="row footer">
+
+</div>
+</body>
+</html>

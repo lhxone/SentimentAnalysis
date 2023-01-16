@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HotSearch</title>
+    <!-- Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+    <script src="/static/bootstrap/js/jquery-3.6.3.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.js"></script>
+</head>
+<body>
+{#头部#}
+<div class="container">
+    <h2>Dashboard</h2>
+    <p>控制板</p>
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#">dashboard</a></li>
+        <li><a href="/hotsearch">近期热搜数据</a></li>
+        <li><a href="/search">查找</a></li>
+    </ul>
+
+
+</div>
+{#中间部#}
+<div class="container">
+    <div id="main" style="width: 800px;height:600px;">111</div>
+</div>
+
+{#尾部#}
+<div class="row footer">
+
+</div>
+
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: '近期话题热度'
+        },
+        tooltip: {},
+        legend: {
+            data: ['话题热度']
+        },
+        xAxis: {
+            data: {{ xdata|safe }},
+            axisLabel:{
+            interval:0,//0：全部显示，1：间隔为1显示对应类目，2：依次类推，（简单试一下就明白了，这样说是不是有点抽象）
+            rotate:-30,//倾斜显示，-：顺时针旋转，+或不写：逆时针旋转
+        }
+        },
+        yAxis: {},
+        series: [
+            {
+                name: '话题热度',
+                type: 'bar',
+                data: {{ ydata|safe }}
+            }
+        ]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+
+</body>
+</html>
